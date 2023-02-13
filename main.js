@@ -23,6 +23,7 @@ step.addEventListener("click", function () {
 });
 
 let score;
+let levelUp = 50;
 
 initialGame();
 
@@ -37,7 +38,7 @@ function colorizeItems() {
   items.forEach((item) => (item.style.backgroundColor = mainColor));
 
   let target = Math.floor(Math.random() * (row * cols));
-  items[target].style.backgroundColor = lightenColor(mainColor, 50);
+  items[target].style.backgroundColor = lightenColor(mainColor, levelUp);
 
   items.forEach((item, number) => {
     if (target === number) {
@@ -48,6 +49,17 @@ function colorizeItems() {
       item.addEventListener("click", loseGame);
     }
   });
+  if (score === 10) {
+    levelUp = 40;
+  } else if (score === 20) {
+    levelUp = 30;
+  } else if (score === 30) {
+    levelUp = 20;
+  } else if (score === 40) {
+    levelUp = 10;
+  } else if (score === 50) {
+    levelUp = 5;
+  }
 }
 
 function lightenColor(color, amount) {
